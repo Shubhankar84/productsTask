@@ -16,32 +16,31 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchProducts() async {
     try {
-      print("calling fetchproducts in function now");
+      // print("calling fetchproducts in function now");
       final response =
           await http.get(Uri.parse('https://api.restful-api.dev/objects'));
       if (response.statusCode == 200) {
-        print(jsonDecode(response.body));
+        // print(jsonDecode(response.body));
 
         List<dynamic> product = jsonDecode(response.body);
-        print("PRODUCTS: ${product.length}");
+        // print("PRODUCTS: ${product.length}");
         for (int i = 0; i < product.length; i++) {
           Product temp = Product.fromSnap(product[i] as Map<String, dynamic>);
           productsList.add(temp);
         }
         setState(() {});
       } else {
-        print(response.statusCode);
+        // print(response.statusCode);
       }
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    print("calling fetchproducts");
+    // print("calling fetchproducts");
     fetchProducts();
   }
 
